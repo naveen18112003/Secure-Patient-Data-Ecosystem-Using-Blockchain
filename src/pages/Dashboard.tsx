@@ -12,6 +12,7 @@ import QRCodeGenerator from "@/components/dashboard/QRCodeGenerator";
 import PrescriptionsView from "@/components/dashboard/PrescriptionsView";
 import MedicationsTracker from "@/components/dashboard/MedicationsTracker";
 import MedicalRecords from "@/components/dashboard/MedicalRecords";
+import AIHealthAssistant from "@/components/dashboard/AIHealthAssistant";
 
 const Dashboard = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -90,7 +91,7 @@ const Dashboard = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
         <Tabs defaultValue="profile" className="space-y-6">
-          <TabsList className="grid grid-cols-5 w-full max-w-2xl mx-auto">
+          <TabsList className="grid grid-cols-6 w-full max-w-4xl mx-auto">
             <TabsTrigger value="profile" className="flex items-center gap-2">
               <UserIcon className="w-4 h-4" />
               <span className="hidden sm:inline">Profile</span>
@@ -110,6 +111,10 @@ const Dashboard = () => {
             <TabsTrigger value="medications" className="flex items-center gap-2">
               <Pill className="w-4 h-4" />
               <span className="hidden sm:inline">Medications</span>
+            </TabsTrigger>
+            <TabsTrigger value="ai" className="flex items-center gap-2">
+              <Heart className="w-4 h-4" />
+              <span className="hidden sm:inline">AI Assistant</span>
             </TabsTrigger>
           </TabsList>
 
@@ -131,6 +136,10 @@ const Dashboard = () => {
 
           <TabsContent value="medications">
             <MedicationsTracker userId={user.id} />
+          </TabsContent>
+
+          <TabsContent value="ai">
+            <AIHealthAssistant userId={user.id} />
           </TabsContent>
         </Tabs>
       </main>

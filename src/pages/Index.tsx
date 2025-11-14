@@ -24,21 +24,28 @@ const Index = () => {
             Smart Patient Data Management with AI Integration, QR Code Technology, and Blockchain Security
           </p>
 
-          <div className="flex gap-4 justify-center pt-6">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
             <Button
               size="lg"
               onClick={() => navigate("/auth")}
               className="bg-gradient-primary hover:opacity-90 transition-opacity shadow-md"
             >
-              Get Started
+              Patient Login
               <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
             <Button
               size="lg"
               variant="outline"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/doctor")}
             >
-              Dashboard
+              Doctor Portal
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => navigate("/scanner")}
+            >
+              QR Scanner
             </Button>
           </div>
         </div>
