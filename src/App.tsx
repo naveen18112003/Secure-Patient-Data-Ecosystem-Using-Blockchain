@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import DoctorPortal from "./pages/DoctorPortal";
+import AdminPortal from "./pages/AdminPortal";
 import QRScanner from "./pages/QRScanner";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/doctor" element={<DoctorPortal />} />
+          <Route path="/admin" element={<AdminPortal />} />
           <Route path="/scanner" element={<QRScanner />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
