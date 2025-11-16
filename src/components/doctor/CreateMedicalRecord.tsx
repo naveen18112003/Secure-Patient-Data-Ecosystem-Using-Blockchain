@@ -47,12 +47,24 @@ const CreateMedicalRecord = ({ doctorId }: { doctorId: string }) => {
     setLoading(true);
 
     try {
+      let parsedData = {};
+      
+      if (formData.recordData.trim()) {
+        try {
+          parsedData = JSON.parse(formData.recordData);
+        } catch (jsonError) {
+          toast.error("Invalid JSON format. Please enter valid JSON or leave empty.");
+          setLoading(false);
+          return;
+        }
+      }
+
       const { error } = await supabase.from("medical_records").insert({
         patient_id: formData.patientId,
         doctor_id: doctorId,
         record_type: formData.recordType,
         diagnosis: formData.diagnosis,
-        record_data: JSON.parse(formData.recordData || "{}"),
+        record_data: parsedData,
       });
 
       if (error) throw error;
@@ -129,14 +141,15 @@ const CreateMedicalRecord = ({ doctorId }: { doctorId: string }) => {
           </div>
 
           <div>
-            <Label htmlFor="recordData">Record Data (JSON)</Label>
+            <Label htmlFor="recordData">Record Data (JSON) - Optional</Label>
             <Textarea
               id="recordData"
               value={formData.recordData}
               onChange={(e) => setFormData({ ...formData, recordData: e.target.value })}
-              placeholder='{"notes": "Patient doing well", "vitals": {"bp": "120/80"}}'
+              placeholder='{"notes": "Patient doing well", "vitals": {"bp": "120/80", "temperature": "98.6"}}'
               rows={4}
             />
+            <p className="text-xs text-muted-foreground mt-1">Leave empty or enter valid JSON only</p>
           </div>
 
           <Button type="submit" disabled={loading} className="w-full">
