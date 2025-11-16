@@ -28,7 +28,8 @@ const QRScanner = () => {
         .select("role")
         .eq("user_id", session.user.id)
         .in("role", ["doctor", "admin", "pharmacist"])
-        .maybeSingle();
+        .limit(1)
+        .single();
 
       if (!roleData) {
         navigate("/");
