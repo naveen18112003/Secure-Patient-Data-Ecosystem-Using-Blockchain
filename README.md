@@ -1,6 +1,6 @@
 ## Welcome to Himangshu's Project
 
-## Project info
+## ** Project info **
 
 
 ## How can I edit this code?
